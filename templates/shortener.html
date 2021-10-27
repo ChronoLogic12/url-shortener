@@ -1,0 +1,30 @@
+{%extends "base.html" %}
+{% block content %}
+
+<div class="row">
+    <div class="col center-align">
+        <div class="card deep-purple lighten-4 text-shadow">
+            <div class="card-content">
+                <span class="card-title">URL SHORTENER</span>
+                <div class="row s12">
+                    <form class="col" method="POST" action="{{ url_for("Shorten")}}">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input id="icon_prefix" type="text" class="validate">
+                                <label for="icon_prefix">URL</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card-action">
+                <button class="btn deep-purple lighten-1" type="submit" name="action">Shorten
+                    <i class="material-icons right">arrow forward</i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content%}
