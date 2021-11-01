@@ -8,6 +8,7 @@ flask = "*"
 flask-pymongo = "*"
 pymongo = {extras = ["srv"], version = "*"}
 heroku = "*"
+gunicorn = "*"
 
 [dev-packages]
 
