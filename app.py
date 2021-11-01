@@ -34,12 +34,19 @@ def home():
 def shorten():
     if request.method == "POST":
         urlLong = request.form.get("url-long")
-        
         if mongo.db.urls.find_one({"url": urlLong}):
-            flash("message")
+            urlReference = mongo.db.urls.find_one({"url": urlLong})["reference"]
+            flash(f"/{urlReference}")
             return redirect(url_for("shorten"))
-    url = mongo.db.urls.find_one(
-        {"reference": "123456"})
+        else:
+            document = {
+                "reference": generateReference(12),
+                "url": urlLong
+            }
+        mongo.db.urls.insert_one(document)
+        urlReference = mongo.db.urls.find_one({"url": urlLong})["reference"]
+        flash(f"/{urlReference}")
+        return redirect(url_for("shorten"))
     return render_template("shortener.html")
 
 # @app.route("/<string:reference>")
@@ -49,4 +56,3 @@ def shorten():
 #         {"reference": reference})
 #         redirect()
 
-# print(generateReference(20))
