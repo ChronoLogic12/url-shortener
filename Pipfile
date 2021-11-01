@@ -6,8 +6,12 @@ name = "pypi"
 [packages]
 flask = "*"
 flask-pymongo = "*"
+pymongo = {extras = ["srv"], version = "*"}
 
 [dev-packages]
 
 [requires]
 python_version = "3.9"
+
+[scripts]
+dev = "sh -c \"export FLASK_ENV='development' && flask run\""
