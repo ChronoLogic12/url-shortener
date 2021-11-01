@@ -49,10 +49,13 @@ def shorten():
         return redirect(url_for("shorten"))
     return render_template("shortener.html")
 
-# @app.route("/<string:reference>")
-# def redirectToPage(reference):
-#     try:
-#         url = mongo.db.urls.find_one(
-#         {"reference": reference})
-#         redirect()
+@app.route("/<string:reference>")
+def redirectToPage(reference):
+    try:
+        url = mongo.db.urls.find_one(
+        {"reference": reference})["url"]
+        return redirect(url)
+    except TypeError as err:
+        flash(f"Error 404 File not found")
+        return redirect(url_for("shorten"))
 
