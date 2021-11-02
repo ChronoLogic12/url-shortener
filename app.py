@@ -39,8 +39,11 @@ def shorten():
             flash(f"https://url-shortener-ms.herokuapp.com/{urlReference}")
             return redirect(url_for("shorten"))
         else:
+            newReference = generateReference(12)
+            while mongo.db.urls.find_one({"reference": newReference}):
+                newReference = generateReference(12)
             document = {
-                "reference": generateReference(12),
+                "reference": newReference,
                 "url": urlLong
             }
         mongo.db.urls.insert_one(document)
