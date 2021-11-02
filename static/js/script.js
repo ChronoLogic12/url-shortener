@@ -1,5 +1,11 @@
 function copyText() {
-	var copyText = document.getElementById("urlShort").innerText;
+	let copyText = document.getElementById("urlShort").innerText;
 
 	navigator.clipboard.writeText(copyText);
+}
+
+function redirect() {
+	let destination = document.getElementById("urlShort").innerText;
+
+	window.open(destination, "_blank");
 }
