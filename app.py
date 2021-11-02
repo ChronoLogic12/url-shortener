@@ -36,7 +36,7 @@ def shorten():
         urlLong = request.form.get("url-long")
         if mongo.db.urls.find_one({"url": urlLong}):
             urlReference = mongo.db.urls.find_one({"url": urlLong})["reference"]
-            flash(f"/{urlReference}")
+            flash(f"https://url-shortener-ms.herokuapp.com/{urlReference}")
             return redirect(url_for("shorten"))
         else:
             document = {
@@ -45,7 +45,7 @@ def shorten():
             }
         mongo.db.urls.insert_one(document)
         urlReference = mongo.db.urls.find_one({"url": urlLong})["reference"]
-        flash(f"/{urlReference}")
+        flash(f"https://url-shortener-ms.herokuapp.com/{urlReference}")
         return redirect(url_for("shorten"))
     return render_template("shortener.html")
 
