@@ -16,15 +16,25 @@
 
 <body>
 
-    <section>
+    <section class="center-align container row">
         <!-- flash messages-->
 
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         {% for message in messages %}
-        <div class="row flashes">
-            <h4 class="deep-purple lighten-4 text-shadow center-align">{{ message }}</h4>
+
+        <div class="card flashes">
+            <div class="col s12 card-content center-align deep-purple lighten-4">
+                <a>
+                    <h4 class="text-shadow center-align" id="urlShort">{{ message }}</h4>
+                </a>
+                <a class="btn-floating btn-large waves-effect deep-purple lighten-1" onClick="copyText()">
+                    <i class="material-icons">content_copy</i>
+                </a>
+            </div>
+
         </div>
+
         {% endfor %}
         {% endif %}
         {% endwith %}
